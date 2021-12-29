@@ -17,8 +17,12 @@ gsis_login_url='https://login.gsis.gr/mylogin/login.jsp'
 aade_debtinfo_url='https://www1.aade.gr/taxisnet/info/protected/displayDebtInfo.htm'
 
 # remove cookies
-echo "removing cookie jar"
 rm -f cookie.txt
+
+tmp=${username//[^a-zA-Z0-9]/}
+
+mkdir -p $tmp
+cd $tmp
 
 # STEP 1, request login page
 curl -s -L "$gsis_link_url" -o resp1.html --cookie-jar cookie.txt
@@ -29,7 +33,6 @@ curl -s -L "$gsis_link_url" -o resp1.html --cookie-jar cookie.txt
 
 
 # STEP 2, POST login form
-echo "Posting.."
 curl -L -s 'https://login.gsis.gr/oam/server/auth_cred_submit' \
   -H 'Connection: close' \
   -H 'Pragma: no-cache' \
@@ -60,10 +63,12 @@ fi
 #STEP 3  get debt info
 curl -s -L "$aade_debtinfo_url" -o debtinfo.html --cookie-jar cookie.txt --cookie cookie.txt 
 
-cat debtinfo.html | awk '/35%/{start=1} /<\/table>/{if (start==1) print ; start=0} {if (start==1) print; }' > d.html
-cat d.html | lynx -stdin -dump -display_charset=UTF-8  -assume_charset=UTF-8 | sed '/^$/d'  > ${username}.debtinfo.txt
 d=$(date +%FT%H%M%S)
 d1=$(date +%F)
+
+cat debtinfo.html | awk '/35%/{start=1} /<\/table>/{if (start==1) print ; start=0} {if (start==1) print; }' > d.html
+cat d.html | lynx -stdin -dump -display_charset=UTF-8  -assume_charset=UTF-8 | sed '/^$/d'  > ${username}.${d1}.debtinfo.txt
 echo "Queried on $d"  >> ${username}.debtinfo.txt
 
 cat ${username}.${d1}.debtinfo.txt
+cd ..

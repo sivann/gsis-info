@@ -15,6 +15,7 @@ fi
 gsis_link_url='https://www1.aade.gr/taxisnet/mytaxisnet'
 gsis_login_url='https://login.gsis.gr/mylogin/login.jsp'
 aade_debtinfo_url='https://www1.aade.gr/taxisnet/info/protected/displayDebtInfo.htm'
+aade_debtinfo_url='https://www1.aade.gr/taxisnet/info/protected/displayDebtInfoAndPay.htm'
 
 # remove cookies
 rm -f cookie.txt

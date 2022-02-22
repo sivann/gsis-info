@@ -21,6 +21,7 @@ aade_debtinfo_url='https://www1.aade.gr/taxisnet/info/protected/displayDebtInfoA
 rm -f cookie.txt
 
 tmp=${username//[^a-zA-Z0-9]/}
+tmp="out/$tmp"
 
 mkdir -p $tmp
 cd $tmp

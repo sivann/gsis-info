@@ -70,7 +70,9 @@ d1=$(date +%F)
 
 cat debtinfo.html | awk '/35%/{start=1} /<\/table>/{if (start==1) print ; start=0} {if (start==1) print; }' > d.html
 cat d.html | lynx -stdin -dump -display_charset=UTF-8  -assume_charset=UTF-8 | sed '/^$/d'  > ${username}.${d1}.debtinfo.txt
-echo "Queried on $d"  >> ${username}.debtinfo.txt
 
-cat ${username}.${d1}.debtinfo.txt
+rm -f ${username}.debtinfo.txt
+
+cat ${username}.${d1}.debtinfo.txt | tee -a ${username}.debtinfo.txt
+echo "Queried on $d"  >> ${username}.debtinfo.txt
 cd ..

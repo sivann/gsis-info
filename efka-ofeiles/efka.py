@@ -50,7 +50,7 @@ except:
 # waitfor(driver, By.ID,'bt1',1)
 
 chrome_options = Options()
-chrome_options.add_experimental_option("detach", True)
+#chrome_options.add_experimental_option("detach", True)
 chrome_options.add_argument("--incognito")
 chrome_options.add_argument('window-size=1400x1024')
 chrome_options.add_argument('disable-extensions')

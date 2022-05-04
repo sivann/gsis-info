@@ -123,28 +123,28 @@ time.sleep(5)
 html = driver.find_element(By.TAG_NAME, "html")
 htmlsrc = html.get_attribute('outerHTML')
 
-fp = open("htmlsrc.html", "w")
+fp = open("out/htmlsrc.html", "w")
 fp.write(htmlsrc)
 fp.close()
 
 
-print('Saving ekkremotites.png')
+print('Saving out/ekkremotites.png')
 ekkremotites=driver.find_element(By.ID, 'ContentPlaceHolder1_panelOikEkkr_CRC')
 png_bytes = ekkremotites.screenshot_as_png
-with open('ekkremotites.png', 'wb') as f:
+with open('out/ekkremotites.png', 'wb') as f:
     f.write(png_bytes)
 
 
 driver.quit()
 
 # Parse to string
-with open('htmlsrc.html', 'r') as file:
+with open('out/htmlsrc.html', 'r') as file:
     data = file.read().replace('\n', '')
 soup = BeautifulSoup(data, "html.parser")
 table = soup.find('table', attrs = {'id':'ContentPlaceHolder1_panelOikEkkr'})
 txt=table.get_text()
 
-with open('thmlsrc.txt', 'w') as f:
+with open('out/thmlsrc.txt', 'w') as f:
     f.write(txt)
 
 

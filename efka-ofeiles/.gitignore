@@ -1,3 +1,5 @@
 credentials.json
 venv-gsis/
 out/
+*.png
+t2.py

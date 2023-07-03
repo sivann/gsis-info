@@ -83,5 +83,9 @@ echo "Name: $name" >> ${username}.${d1}.debtinfo.txt
 echo "Vat: $vatno" >> ${username}.${d1}.debtinfo.txt
 
 cat ${username}.${d1}.debtinfo.txt | tee -a ${username}.debtinfo.txt
-echo "Queried on $d"  >> ${username}.debtinfo.txt
+echo "Queried on: $d"  >> ${username}.debtinfo.txt
+
+echo '<table>' > ${username}.debtinfo.html
+cat ${username}.debtinfo.txt | sed -e 's,^,<tr><th align="left">,' -e 's,  ,</th><td>,' -e 's,: ,</th/<td>,' -e 's,$,</td></tr>,' >> ${username}.debtinfo.html
+echo '</table>' >> ${username}.debtinfo.html
 cd ..

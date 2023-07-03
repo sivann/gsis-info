@@ -19,7 +19,7 @@ For now just debt is supported (Οφειλές)
 How to email results:
 
 ```
-cat <username>.debtinfo.html | mail -s 'Οφειλές' -M "text/html"  your_email@xyz.com
+cat out/<username>/<username>.debtinfo.html | mail -s 'Οφειλές' -M "text/html"  your_email@xyz.com
 ```
 
 

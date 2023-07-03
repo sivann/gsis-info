@@ -1,7 +1,7 @@
 # gsis_info
 Get various info from AADE/GSIS, command line
 
-For now just debt is supported (Ληξιπρόθεσμες οφειλές)
+For now just debt is supported (Οφειλές)
 
 ```
 ./gsis-info.sh <username> <password>
@@ -10,5 +10,16 @@ For now just debt is supported (Ληξιπρόθεσμες οφειλές)
    Ληξιπρόθεσμο Υπόλοιπο Οφειλών           100,00 €
    Προσαυξήσεις,Τόκοι,τέλη                   2,40 €
    Συνολικό Ποσό Οφειλών εκτός ρύθμισης    102,40 €
+   Name: ΙΩΑΝΝΟΥ ΒΑΣ. ΣΠΥΡΙΔΩΝ
+   Vat: 063563360
+   Queried on: 2023-07-03T090759
 
 ```
+
+How to email results:
+
+```
+cat <username>.debtinfo.html | mail -s 'Οφειλές' -M "text/html"  your_email@xyz.com
+```
+
+

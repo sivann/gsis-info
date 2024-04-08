@@ -81,11 +81,18 @@ name=$(cat resp3.html |grep 'Α.Φ.Μ.:'|cut -d: -f2-|sed 's/&nbsp;/ /g'|cut -d-
 
 echo "Name: $name" >> ${username}.${d1}.debtinfo.txt
 echo "Vat: $vatno" >> ${username}.${d1}.debtinfo.txt
+echo "Username: ${username}"  >> ${username}.debtinfo.txt
 
 cat ${username}.${d1}.debtinfo.txt | tee -a ${username}.debtinfo.txt
 echo "Queried on: $d"  >> ${username}.debtinfo.txt
 
-echo '<table>' > ${username}.debtinfo.html
-cat ${username}.debtinfo.txt | sed -e 's,^,<tr><th align="left">,' -e 's,  ,</th><td>,' -e 's,: ,</th/<td>,' -e 's,$,</td></tr>,' >> ${username}.debtinfo.html
+echo '<table>' > ${username}.debtinfo1.html
+cat ${username}.debtinfo.txt | sed -e 's,^,<tr><th align="left">,' -e 's,  ,</th><td>,' -e 's,: ,</th/<td>,' -e 's,$,</td></tr>,' >> ${username}.debtinfo1.html
+
+# make bold non-zero amounts
+cat ${username}.debtinfo1.html|sed -e '/0,00/b ; s/\([0-9]*,[0-9]\{2\}\) €/<b>\1 €<\/b>/' > ${username}.debtinfo.html
+
 echo '</table>' >> ${username}.debtinfo.html
+rm -f  ${username}.debtinfo1.html
 cd ..
+

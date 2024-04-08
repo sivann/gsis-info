@@ -81,7 +81,7 @@ name=$(cat resp3.html |grep 'Α.Φ.Μ.:'|cut -d: -f2-|sed 's/&nbsp;/ /g'|cut -d-
 
 echo "Name: $name" >> ${username}.${d1}.debtinfo.txt
 echo "Vat: $vatno" >> ${username}.${d1}.debtinfo.txt
-echo "Username: ${username}"  >> ${username}.debtinfo.txt
+echo "Username: ${username}"  >> ${username}.${d1}.debtinfo.txt
 
 cat ${username}.${d1}.debtinfo.txt | tee -a ${username}.debtinfo.txt
 echo "Queried on: $d"  >> ${username}.debtinfo.txt
